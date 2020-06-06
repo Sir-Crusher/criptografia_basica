@@ -10,7 +10,7 @@ class Cripto
         
         while ($chave->strlen() <> $texto->strlen())
         {
-            //estender chave at� o tamanho do texto
+            //estender chave até o tamanho do texto
             
             if ($tamanho_texto == $i)
                 $i = 0;
@@ -26,12 +26,12 @@ class Cripto
         
         for ($i = 0; i < $tamanho_texto; $i++)
         {
-            /*conseguir a posi��o do caractere em c�digo ASCII,
-            somar com a posi��o relativa do caractere � chave e realizar o m�dulo 26 */
+            /*conseguir a posição do caractere em código ASCII,
+            somar com a posição relativa do caractere à chave e realizar o módulo 26 */
             
             $caractere_encriptado = ($texto->substr($i, 1) + $chave->substr($i, 1)) %26;
             
-            //Converter a posi��o resultante em ASCII para caractere
+            //Converter a posição resultante em ASCII para caractere
             
             $caractere_encriptado += 'A';
             
@@ -41,6 +41,49 @@ class Cripto
         }
         
         return $texto_encriptado;
+    }
+}
+
+{
+
+    function desencriptar ($chave, $texto)
+    {
+        $tamanho_texto = $texto->strlen();
+        $i = 0;
+        
+        while ($chave->strlen() <> $texto->strlen())
+        {
+            //estender chave até o tamanho do texto
+            
+            if ($tamanho_texto == $i)
+                $i = 0;
+            
+            $chave +=($chave-> substr($i, 1));
+            
+            $i++;
+        }
+        
+        //desencriptar o texto
+        
+        $texto_desencriptado = "";
+        
+        for ($i = 0; i < $tamanho_texto; $i++)
+        {
+            /*conseguir a posição do caractere em código ASCII,
+            subtrair com a posição relativa do caractere, somar 26 à chave e realizar o módulo 26 */
+            
+            $caractere_desencriptado = ($texto->substr($i, 1) - $chave->substr($i, 1)) + %26;
+            
+            //Converter a posição resultante em ASCII para caractere
+            
+            $caractere_desencriptado += 'A';
+            
+            //Adicionar o caractere encriptado ao texto final
+            
+            $texto_desencriptado += (string)($caractere_desencriptado);
+        }
+        
+        return $texto_desencriptado;
     }
 }
 ?>
