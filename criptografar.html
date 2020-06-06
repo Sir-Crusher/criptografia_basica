@@ -16,20 +16,24 @@
 <title>Login</title>
 </head>
 <body
-
 	<div class="container pt-5">
-	<Form action="/php/login.php" method="POST">
-	<h1>Login</h1>
+	<Form action="/php/executar.php" method="POST">
+	<h1>Criptografia/Descriptografia</h1>
 		<div class="form-group">
-			<label for="user_login">Nome de Usuário:</label>
-			<input id="user_login" type="text" class="form-control" placeholder="Digite o nome de usuário" required>
+			<input type="radio" id="criptografar" name="opcao" value=0>
+			<label for="criptografar">Criptografar</label><br>
+			<input type="radio" id="descriptografar" name="opcao" value=1>
+			<label for="descriptografar">Descriptografar</label>
 		</div>
 		<div class="form-group">
-			<label for="senha_login">Senha:</label>
-			<input type="password" id="senha_login" required>
+			<label for="textofile">Envie o arquivo</label>
+			<input id="textofile" name="textofile" type="file" class="form-control">
 		</div>
-		<input type="submit" value="Entrar">
+		<input type="submit" value="btnLogin">
 	</Form>
 </div>
+<center>
+<a href="/php/sair.php">Sair</a>
+</center>
 </body>
 </html>
