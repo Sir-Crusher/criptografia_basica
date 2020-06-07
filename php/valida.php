@@ -33,7 +33,7 @@ if($btnLogin)
 				if (!empty($_SESSION['id']))
 				{
 				    echo "Olá ".$_SESSION['nome'].", Bem vindo <br>";
-				    header("location: /criptografar.html");
+				    header("Location: /criptografar.html");
 				}
 				else
 				{
