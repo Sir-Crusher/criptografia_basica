@@ -11,13 +11,13 @@ if ($opcao == 0)
 {
     $texto_encriptado = $objCripto->criptografar($texto, $chave);
 
-    $arquivo_final = file_put_contents("http://serverc.sytes.net/criptografado.txt", $texto_encriptado);
+    $arquivo_final = file_put_contents("https://serverc.sytes.net/criptografado.txt", $texto_encriptado);
 }
 
 else 
 {
     $texto_descriptografado = $objCripto->descriptografar($texto, chave);
-    $arquivo_final = file_put_contents("http://serverc.sytes.net/descriptografado", $texto_descriptografado);
+    $arquivo_final = file_put_contents("https://serverc.sytes.net/descriptografado", $texto_descriptografado);
 }
 
 if (file_exists($arquivo_final)) {
