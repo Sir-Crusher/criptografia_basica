@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../php/config.php';
+require_once 'http:/serverc.sytes.net/php/config.php';
 $btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
 
 if($btnLogin)
@@ -13,7 +13,7 @@ if($btnLogin)
 	{
 		//Gerar a senha criptografada
 		//echo password_hash($senha, PASSWORD_DEFAULT);
-		//Pesquisar o usu·rio no BD
+		//Pesquisar o usu√°rio no BD
 		
 	    $result_usuario = "SELECT id, nome, senha FROM usuario WHERE nome='$usuario' LIMIT 1";
 		
@@ -32,30 +32,30 @@ if($btnLogin)
 				
 				if (!empty($_SESSION['id']))
 				{
-				    echo "Ol· ".$_SESSION['nome'].", Bem vindo <br>";
-				    header("Location: /criptografar.html");
+				    echo "Ol√° ".$_SESSION['nome'].", Bem vindo <br>";
+				    header("Location: http:/serverc.sytes.net/criptografar.html");
 				}
 				else
 				{
-				    $_SESSION['msg'] = "¡rea restrita.";
-				    header("Location: /index.php");
+				    $_SESSION['msg'] = "√Årea restrita.";
+				    header("Location: http:/serverc.sytes.net/index.php");
 				}
 			}
 			else
 			{
 				$_SESSION['msg'] = "Login e senha incorreto!";
-				header("Location: /index.php");
+				header("Location: http:/serverc.sytes.net/index.php");
 			}
 		}
 	}
 	else
 	{
 		$_SESSION['msg'] = "Login e senha incorreto!";
-		header("Location: /index.php");
+		header("Location: http:/serverc.sytes.net/index.php");
 	}
 }
 else
 {
-	$_SESSION['msg'] = "P·gina n„o encontrada";
-	header("Location: /index.php");
+	$_SESSION['msg'] = "P√°gina n√£o encontrada";
+	header("Location: http:/serverc.sytes.net/index.php");
 }
