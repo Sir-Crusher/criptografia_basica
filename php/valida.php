@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'https://serverc.sytes.net/php/config.php';
+require_once '../php/config.php';
 $btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
 
 if($btnLogin)
@@ -33,29 +33,29 @@ if($btnLogin)
 				if (!empty($_SESSION['id']))
 				{
 				    echo "Olá ".$_SESSION['nome'].", Bem vindo <br>";
-				    header("Location: https://serverc.sytes.net/criptografar.html");
+				    header("Location: ./criptografar.html");
 				}
 				else
 				{
 				    $_SESSION['msg'] = "Área restrita.";
-				    header("Location: https://serverc.sytes.net/index.html");
+				    header("Location: ./index.html");
 				}
 			}
 			else
 			{
 				$_SESSION['msg'] = "Login e senha incorreto!";
-				header("Location: https://serverc.sytes.net/index.html");
+				header("Location: ./index.html");
 			}
 		}
 	}
 	else
 	{
 		$_SESSION['msg'] = "Login e senha incorreto!";
-		header("Location: https://serverc.sytes.net/index.html");
+		header("Location: ./index.html");
 	}
 }
 else
 {
 	$_SESSION['msg'] = "Página não encontrada";
-	header("Location: https://serverc.sytes.net/index.html");
+	header("Location: ./index.html");
 }
