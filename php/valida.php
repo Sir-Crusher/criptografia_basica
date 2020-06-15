@@ -15,9 +15,9 @@ if($btnLogin)
 		//echo password_hash($senha, PASSWORD_DEFAULT);
 		//Pesquisar o usuário no BD
 		
-	    $result_usuario = "SELECT id, nome, senha FROM usuario WHERE nome='$usuario' LIMIT 1";
+	    $query_login = "SELECT id, nome, senha FROM usuario WHERE nome='$usuario' LIMIT 1";
 		
-	    $resultado_usuario = mysqli_query($banco, $result_usuario);
+	    $resultado_usuario = mysqli_query($banco, $query_login);
 		
 		if($resultado_usuario)
 		{

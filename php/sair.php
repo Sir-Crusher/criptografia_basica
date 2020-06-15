@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-unset($_SESSION['id'], $_SESSION['nome'], $_SESSION['email']);
+session_unset();
+session_destroy();
 
-$_SESSION['msg'] = "Deslogado com sucesso";
+echo "Deslogado com sucesso";
 header("Location: ./index.html");
