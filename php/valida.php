@@ -7,6 +7,7 @@ if($btnLogin)
 {
 	$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
 	$senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+	$senha = mysqli_query($banco, "PASSWORD('$senha')");
 	//echo "$usuario - $senha";
 	
 	if((!empty($usuario)) AND (!empty($senha)))
@@ -15,7 +16,7 @@ if($btnLogin)
 		//echo password_hash($senha, PASSWORD_DEFAULT);
 		//Pesquisar o usuário no BD
 		
-	    $query_login = "SELECT id, nome, senha FROM usuario WHERE nome='$usuario' LIMIT 1";
+	    $query_login = "SELECT nome, senha FROM usuario WHERE nome='$usuario' LIMIT 1";
 		
 	    $resultado_usuario = mysqli_query($banco, $query_login);
 		
@@ -25,7 +26,7 @@ if($btnLogin)
 			
 			if (password_verify($senha, $row_usuario['senha']))
 			{
-				$_SESSION['id'] = $row_usuario['id'];
+				$_SESSION['id'] = $row_usuario['IDLogin'];
 				$_SESSION['nome'] = $row_usuario['nome'];
 				$_SESSION['email'] = $row_usuario['email'];
 				session_start();
