@@ -10,22 +10,20 @@ if ($enviar)
 
 //Se for 0, vai criptografar or arquivo. Se for 1, vai descriptografar
 $opcao = $_POST['opcao'];
-$diretorio = "./";
-$texto_local = $diretorio. basename($_FILES['textofile']['tmp_name']);
-$texto= file_get_contents($texto_local);
+$texto= $_POST['textofile'];
 $chave = $_POST['chave'];
 
 if ($opcao == 0)
 {
     $texto_encriptado = $objCripto->criptografar($texto, $chave);
 
-    $arquivo_final = file_put_contents("../criptografado.txt", $texto_encriptado);
+    $arquivo_final = file_put_contents("/criptografado.txt", $texto_encriptado);
 }
 
 else 
 {
     $texto_descriptografado = $objCripto->descriptografar($texto, chave);
-    $arquivo_final = file_put_contents("../descriptografado", $texto_descriptografado);
+    $arquivo_final = file_put_contents("/descriptografado", $texto_descriptografado);
 }
 
 if (file_exists($arquivo_final)) {

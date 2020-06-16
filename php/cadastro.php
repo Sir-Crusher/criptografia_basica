@@ -112,11 +112,11 @@ if (empty($usuario_erro) && empty($senha_erro) && empty($confirmar_senha_erro) &
         if($requisicao->execute())
         {
         
-            // Redirecionar à página de login
+            // Redirecionar à página de criptografia
 					session_start();
-		$_SESSION['login'] = $param_usuario;
-        $_SESSION['senha'] = $param_senha;
-		header("location: /criptografar.html");
+			$_SESSION['login'] = $param_usuario;
+			$_SESSION['senha'] = $param_senha;
+			header("location: /criptografar.html");
         } 
         else
         {

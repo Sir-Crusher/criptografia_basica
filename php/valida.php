@@ -14,11 +14,11 @@ if ($enviar)
 	if((!empty($usuario)) AND (!empty($senha)))
 	{
 		//Pesquisar o usuário no BD
-	    $query_login = "SELECT * FROM usuario WHERE nome='$usuario'";
+	    $query_login = "SELECT nome,senha FROM usuario WHERE nome='$usuario' LIMIT 1";
 		
 	    $resultado_usuario = mysqli_query($banco, $query_login);
 		
-		if($resultado_usuario->num_rows > 0)
+		if($resultado_usuario)
 		{
 			$row_usuario = mysqli_fetch_assoc($resultado_usuario);
 			
@@ -43,11 +43,12 @@ if ($enviar)
 			}
 		}
 	}
-	
-	}
 	else
 	{
-		$_SESSION['msg'] = "Login e senha incorreto!";
+		$_SESSION['msg'] = "Página não encontrada!";
 		echo $_SESSION['msg'];
 		header("Location: /index.html");
 	}
+// Fechar conexão
+$banco->close();
+?>
