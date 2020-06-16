@@ -27,7 +27,7 @@
 </head>
 <body>
 	<div class="container pt-5">
-	<Form action="../php/executar.php" enctype="multipart/form-data" method="POST">
+	<Form action="../php/executar.php" method="POST">
 	<h1>Criptografia/Descriptografia</h1>
 		<div class="form-group">
 			<input type="radio" id="criptografar" name="opcao" value=0>
@@ -41,7 +41,7 @@
 		</div>
 		<div class="form-group">
 			<label for="textofile">Envie o arquivo de texto</label>
-			<input id="textofile" name="textofile" type="text" size="40" rows="4">
+			<textarea class="form-control" id="textofile" name="textofile" rows="5"></textarea>
 		</div>
 		<input type="submit" name="enviar" value="Enviar arquivo">
 	</Form>

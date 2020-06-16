@@ -15,14 +15,14 @@ $chave = $_POST['chave'];
 
 if ($opcao == 0)
 {
-    $texto_encriptado = $objCripto->criptografar($texto, $chave);
+    $texto_encriptado = $objCripto->criptografar($chave,$texto);
 
     $arquivo_final = file_put_contents("/criptografado.txt", $texto_encriptado);
 }
 
 else 
 {
-    $texto_descriptografado = $objCripto->descriptografar($texto, chave);
+    $texto_descriptografado = $objCripto->descriptografar($chave,$texto);
     $arquivo_final = file_put_contents("/descriptografado", $texto_descriptografado);
 }
 

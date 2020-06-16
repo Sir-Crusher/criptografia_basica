@@ -3,17 +3,17 @@ class cripto {
 
     function criptografar ($chave, $texto)
     {
-        $tamanho_texto = $texto->strlen();
+        $tamanho_texto = strlen($texto);
         $i = 0;
         
-        while ($chave->strlen() <> $texto->strlen())
+        while (strlen($chave) <> strlen($texto))
         {
             //estender chave até o tamanho do texto
             
             if ($tamanho_texto == $i)
                 $i = 0;
             
-            $chave +=($chave-> substr($i, 1));
+            $chave += substr($chave,$i, 1);
             
             $i++;
         }
@@ -27,7 +27,7 @@ class cripto {
             /*conseguir a posição do caractere em código ASCII,
             somar com a posição relativa do caractere à chave e realizar o módulo 26 */
             
-            $caractere_encriptado = ($texto->substr($i, 1) + $chave->substr($i, 1)) %26;
+            $caractere_encriptado = (substr($texto,$i, 1) + substr($chave,$i, 1)) %26;
             
             //Converter a posição resultante em ASCII para caractere
             
@@ -46,14 +46,14 @@ function descriptografar ($chave, $texto)
         $tamanho_texto = $texto->strlen();
         $i = 0;
         
-        while ($chave->strlen() <> $texto->strlen())
+        while (strlen($chave) <> strlen($texto))
         {
             //estender chave até o tamanho do texto
             
             if ($tamanho_texto == $i)
                 $i = 0;
             
-            $chave +=($chave-> substr($i, 1));
+            $chave += substr($chave,$i, 1);
             
             $i++;
         }
@@ -67,7 +67,7 @@ function descriptografar ($chave, $texto)
             /*conseguir a posição do caractere em código ASCII,
             subtrair com a posição relativa do caractere, somar 26 à chave e realizar o módulo 26 */
             
-            $caractere_desencriptado = ($texto->substr($i, 1) - $chave->substr($i, 1) + 26 ) %26;
+            $caractere_desencriptado = (substr($texto,$i, 1) - substr($chave,$i, 1) + 26 ) %26;
             
             //Converter a posição resultante em ASCII para caractere
             

@@ -14,7 +14,7 @@ if ($enviar)
 	if((!empty($usuario)) AND (!empty($senha)))
 	{
 		//Pesquisar o usuário no BD
-	    $query_login = "SELECT nome,senha FROM usuario WHERE nome='$usuario' LIMIT 1";
+	    $query_login = "SELECT nome,senha FROM usuario WHERE nome=".$usuario. " LIMIT 1";
 		
 	    $resultado_usuario = mysqli_query($banco, $query_login);
 		
