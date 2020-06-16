@@ -4,18 +4,18 @@ class cripto {
     function criptografar ($chave, $texto)
     {
         $tamanho_texto = strlen($texto);
-        $i = 0;
         
-        while (strlen($chave) <> strlen($texto))
+        $chave_original = $chave;
+		
+        for ($i = 0; strlen($chave) <> strlen($texto); $i++)
         {
             //estender chave até o tamanho do texto
             
             if ($tamanho_texto == $i)
                 $i = 0;
             
-            $chave += substr($chave,$i, 1);
-            
-            $i++;
+			var_dump(substr($chave,(int)$i, 1));
+            $chave += substr($chave_original, $i, 1);
         }
         
         //criptografar o texto
