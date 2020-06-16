@@ -1,9 +1,7 @@
 <?php 
-class Cripto
+class cripto {
 
-{
-
-    function encriptar ($chave, $texto)
+    function criptografar ($chave, $texto)
     {
         $tamanho_texto = $texto->strlen();
         $i = 0;
@@ -20,7 +18,7 @@ class Cripto
             $i++;
         }
         
-        //encriptar o texto
+        //criptografar o texto
         
         $texto_encriptado = "";
         
@@ -42,9 +40,8 @@ class Cripto
         
         return $texto_encriptado;
     }
-}
 
-function desencriptar ($chave, $texto)
+function descriptografar ($chave, $texto)
     {
         $tamanho_texto = $texto->strlen();
         $i = 0;

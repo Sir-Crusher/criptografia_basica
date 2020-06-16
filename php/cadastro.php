@@ -7,24 +7,27 @@ $usuario_erro = $senha_erro = $confirmar_senha_erro = $email_erro = "";
 
 
 //validar nome de usuário
-if (empty(trim($_POST["username"]))){
+if (empty(trim($_POST["usuario"])))
+{
     
     $usuario_erro = "Por favor digite um nome de usuário.";
+	echo $usuario_erro;
 }
 
 else 
 {
     
     //preparar uma requisição de seleção
-    $comando = "select IDLogin from login where Nome = ?";
+    $comando = "select IDLogin from usuario where nome = ?";
 
-    if ($requisicao = $banco->prepare(comando))
+    if ($requisicao = $banco->prepare($comando))
     {
-        
+        $usuario = trim($_POST['usuario']);
+		
         //Ligar as variáveis à requisição preparada como parâmetros
-        $requisicao->bind_param("s", $param_usuario);
+        $requisicao->bind_param("s", $usuario);
         
-        $param_usuario = trim($_POST['usuario']);
+        
         
         //tentar executar a requisição
         if ($requisicao->execute())
@@ -36,6 +39,7 @@ else
             if ($requisicao->num_rows() == 1)
             {
                 $usuario_erro = "Esse nome de usuário já foi registrado";
+				echo $usuario_erro;
             }
             else 
             {
@@ -49,27 +53,18 @@ else
     }
 }
 
-// Validar email
-if (empty(trim($_POST["email"])))
-{
-    $email_erro = "Por favor digite algum email.";
-}
-
-else
-{
-    $email = trim($_POST["email"]);
-}
-
 // Validar senha
 
 if (empty(trim($_POST["senha"])))
 {
     $senha_erro = "Por favor digite uma senha.";
+	echo $senha_erro;
 } 
 
 else if (strlen(trim($_POST["senha"])) < 6)
 {
     $senha_erro = "Password must have atleast 6 characters.";
+	echo $senha_erro;
 }
 else
 {
@@ -81,6 +76,7 @@ else
 if (empty(trim($_POST["senha_conf"])))
 {
     $confirmar_senha_erro = "Por favor confirme a senha.";
+	echo $confirmar_senha_erro;
 }
 else
 {
@@ -89,6 +85,7 @@ else
     if (empty($senha_erro) && ($senha != $confirmar_senha))
     {
         $confirmar_senha_erro = "A senha não foi confirmada.";
+		echo $confirmar_senha_erro;
     }
 }
 
@@ -98,24 +95,28 @@ if (empty($usuario_erro) && empty($senha_erro) && empty($confirmar_senha_erro) &
 {
     
     // Preparar uma requisição de inserção
-    $comando = "Insert into login (Nome, senha, email) VALUES (?, ?, ?)";
+    $comando = "Insert into usuario (nome, senha) VALUES (?, ?)";
     
-    if ($requisicao = $banco->prepare(comando))
+    if ($requisicao = $banco->prepare($comando))
     {
-        
-        // Ligar variáveis à requisição como parâmetros
-        $requisicao->bind_param("sss", $param_usuario, $param_senha);
-        
-        // Definir parâmetros        
+	    // Definir parâmetros        
         $param_usuario = $usuario;
         $param_senha = password_hash($senha, PASSWORD_DEFAULT); // Cria um hash para a senha
+        
+        // Ligar variáveis à requisição como parâmetros
+        $requisicao->bind_param("ss", $param_usuario, $param_senha);
+        
+
         
         // Tentar executar a requisição preparada        
         if($requisicao->execute())
         {
         
             // Redirecionar à página de login
-            header("location: /login.html");
+					session_start();
+		$_SESSION['login'] = $param_usuario;
+        $_SESSION['senha'] = $param_senha;
+		header("location: /criptografar.html");
         } 
         else
         {
@@ -125,10 +126,7 @@ if (empty($usuario_erro) && empty($senha_erro) && empty($confirmar_senha_erro) &
         // Fechar requisição
         $requisicao->close();
 		
-		session_start();
-		$_SESSION['login'] = $param_usuario;
-        $_SESSION['senha'] = $param_senha;
-		header("location: ../interesses.html");
+
     }
 }
 

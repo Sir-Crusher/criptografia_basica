@@ -1,9 +1,17 @@
 <?php 
+include ('cripto.php');
 $objCripto = new Cripto();
+
+$enviar = filter_input(INPUT_POST, 'enviar', FILTER_SANITIZE_STRING);
+
+if ($enviar)
+
+{
 
 //Se for 0, vai criptografar or arquivo. Se for 1, vai descriptografar
 $opcao = $_POST['opcao'];
-$texto_local = $_FILES['textofile']['tmp_name'];
+$diretorio = "./";
+$texto_local = $diretorio. basename($_FILES['textofile']['tmp_name']);
 $texto= file_get_contents($texto_local);
 $chave = $_POST['chave'];
 
@@ -30,5 +38,6 @@ if (file_exists($arquivo_final)) {
     header('Content-Length: ' . filesize($arquivo_final));
     readfile($arquivo_final);
     exit;
+}
 }
 ?>

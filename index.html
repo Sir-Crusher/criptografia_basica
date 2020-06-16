@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -29,7 +28,7 @@
 		?>
 
 	<div class="container pt-5">
-	<Form action="../php/valida.php" method="POST">
+	<Form action="/php/valida.php" method="POST">
 	<h1>Login</h1>
 		<div class="form-group">
 			<label for="user_login">Nome de Usuário:</label><br>
@@ -39,8 +38,9 @@
 			<label for="senha_login">Senha:</label><br>
 			<input type="password" id="senha_login" name="senha" required>
 		</div>
-		<input type="submit" value="Logar" name="btnLogin">
+		<input type="submit" value="Logar" name="enviar">
 	</Form>
+	<p>Não tem conta? cadastre a sua <a href="/cadastro.html">aqui</a></p>
 </div>
 </body>
 </html>
