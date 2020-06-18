@@ -13,8 +13,6 @@ class cripto {
             
             if ($tamanho_texto == $i)
                 $i = 0;
-            
-			var_dump(substr($chave,(int)$i, 1));
             $chave += substr($chave_original, $i, 1);
         }
         
